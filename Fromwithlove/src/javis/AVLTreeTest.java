@@ -132,6 +132,7 @@ class AVLTree
     {
         return countNodes(root);
     }
+    // update code len git
     private int countNodes(AVLNode r)
     {
         if (r == null)
