@@ -70,20 +70,21 @@ class AVLTree
         else if (x < t.data)
         {
             t.left = insert( x, t.left );
+            
             if( height( t.left ) - height( t.right ) == 2 )
                 if( x < t.left.data )
-                    t = rotateWithLeftChild( t );
+                    t = RightRotate( t );
                 else
-                    t = doubleWithLeftChild( t );
+                    t = LeftRightRotate( t );
         }
         else if( x > t.data )
         {
             t.right = insert( x, t.right );
             if( height( t.right ) - height( t.left ) == 2 )
                 if( x > t.right.data)
-                    t = rotateWithRightChild( t );
+                    t = LeftRotate( t );
                 else
-                    t = doubleWithRightChild( t );
+                    t = RightLeftRotate( t );
         }
         else
           ;  // Duplicate; do nothing
@@ -91,7 +92,7 @@ class AVLTree
         return t;
     }
     /* Rotate binary tree node with left child */     
-    private AVLNode rotateWithLeftChild(AVLNode k2)
+    private AVLNode RightRotate(AVLNode k2) //RightRotate
     {
         AVLNode k1 = k2.left;
         k2.left = k1.right;
@@ -102,7 +103,7 @@ class AVLTree
     }
 
     /* Rotate binary tree node with right child */
-    private AVLNode rotateWithRightChild(AVLNode k1)
+    private AVLNode LeftRotate(AVLNode k1) //LeftRotate
     {
         AVLNode k2 = k1.right;
         k1.right = k2.left;
@@ -114,18 +115,18 @@ class AVLTree
     /**
      * Double rotate binary tree node: first left child
      * with its right child; then node k3 with new left child */
-    private AVLNode doubleWithLeftChild(AVLNode k3)
+    private AVLNode LeftRightRotate(AVLNode k3)
     {
-        k3.left = rotateWithRightChild( k3.left );
-        return rotateWithLeftChild( k3 );
+        k3.left = LeftRotate( k3.left );
+        return RightRotate( k3 );
     }
     /**
      * Double rotate binary tree node: first right child
      * with its left child; then node k1 with new right child */      
-    private AVLNode doubleWithRightChild(AVLNode k1)
+    private AVLNode RightLeftRotate(AVLNode k1)
     {
-        k1.right = rotateWithLeftChild( k1.right );
-        return rotateWithRightChild( k1 );
+        k1.right = RightRotate( k1.right );
+        return LeftRotate( k1 );
     }    
     /* Functions to count number of nodes */
     public int countNodes()

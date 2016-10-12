@@ -1,6 +1,7 @@
 package AutomationFramwork;
 
 import org.testng.annotations.Test;
+import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
@@ -13,12 +14,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 
 public class TestCase2 {
-	public WebDriver driver = new FirefoxDriver();
-
+	
+	WebDriver driver = new FirefoxDriver();
 	
 	@BeforeMethod
 	public void beforeMethod() {
-	
+		
 		driver.get("http://lab.enginethemes.com/fre");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
